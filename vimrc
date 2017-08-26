@@ -1,0 +1,340 @@
+set nocompatible
+filetype off
+
+" -----------------------------------------------------------------------------
+" Plugins
+" -----------------------------------------------------------------------------
+
+" Need for solarized plugin
+execute pathogen#infect()
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+
+" Airline
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+
+" Languages
+Plugin 'hdima/python-syntax'
+Plugin 'pangloss/vim-javascript'
+Plugin 'adimit/prolog.vim'
+" Plugin 'jcf/vim-latex'
+
+" Tags
+Plugin 'xolox/vim-easytags'
+Plugin 'xolox/vim-misc'
+Plugin 'majutsushi/tagbar'
+
+" Visual stuff
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'Lokaltog/powerline-fonts'
+
+" Tab completion
+Plugin 'Valloric/YouCompleteMe'
+" Plugin 'ervandew/supertab'
+
+" More Features
+Plugin 'dockyard/vim-easydir'
+Plugin 'tpope/vim-obsession'
+Plugin 'paradigm/TextObjectify'
+Plugin 'vim-scripts/tComment'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'junegunn/vim-easy-align'
+Plugin 'scrooloose/nerdtree'
+Plugin 'tpope/vim-fugitive'
+Plugin 'nathanaelkane/vim-indent-guides.git'
+Plugin 'terryma/vim-expand-region'
+
+" -----------------------------------------------------------------------------
+" Other options
+" -----------------------------------------------------------------------------
+
+filetype plugin indent on
+
+set term=xterm-256color
+set guioptions-=m " Remove menu bar
+set guioptions-=T " Remove toolbar
+set guioptions-=r " Remove right-hand scroll bar
+
+set cursorline
+set timeoutlen=1000 ttimeoutlen=0
+set number
+set shiftwidth=4 softtabstop=4
+syntax on
+set tabstop=4
+set expandtab
+
+" Text line breaks
+set formatoptions=l
+set lbr
+" set showbreak=↪
+
+" Color Scheme
+syntax enable
+set background=light
+colorscheme solarized
+
+" Without this, some write event's aren't processed by the OS
+set backupcopy=yes
+
+" -----------------------------------------------------------------------------
+" File Extensions
+" -----------------------------------------------------------------------------
+
+" Make .pl files load like Prolog and not like Perl
+autocmd BufNewFile,BufRead *.pl :set ft=prolog
+
+" Make .tex files load like tex files.
+autocmd BufNewFile,BufRead *.tex :set ft=tex
+
+" Make .md files load like Markdown files.
+autocmd BufNewFile,BufRead *.md :set ft=markdown
+
+" Make Emakefile files load like Erlang files.
+autocmd BufNewFile,BufRead Emakefile :set ft=erlang
+
+" Make ejs file load as HTML
+autocmd BufNewFile,BufRead *.ejs :set ft=html
+
+" Make .docker files load as Dockefile
+autocmd BufNewFile,BufRead Dockerfile.* :set ft=dockerfile
+autocmd BufNewFile,BufRead *.docker :set ft=dockerfile
+
+" -----------------------------------------------------------------------------
+" Folds
+" -----------------------------------------------------------------------------
+
+let c_no_comment_fold = 1
+
+" Function to start using folds, but only when I want
+fu! StartFolds()
+    set foldnestmax=1     " Only fold one level
+    set foldmethod=indent " Use syntax to determine where to fold
+endfu
+
+nnoremap <silent> <leader>z :call StartFolds()<CR>
+
+" Default vim keymaps
+" zo - Open fold
+" zc - Close fold
+" zR - Open all folds
+" zM - Close all folds
+
+" -----------------------------------------------------------------------------
+" Language
+" -----------------------------------------------------------------------------
+
+fu! InitLanguage()
+    set spell spelllang=en
+    let b:language = 1
+endfu
+
+fu! ToggleSpell()
+    set spell!
+endfu
+
+" Function to toggle between two used languages
+fu! ToggleLanguage()
+    if b:language == 1
+        set spelllang=pt
+        let b:language = 0
+    else
+        set spelllang=en
+        let b:language = 1
+    endif
+endfu
+
+" Initialize language variables for every new buffer
+autocmd BufWinEnter,FileType * :call InitLanguage()
+
+" -----------------------------------------------------------------------------
+" Highlight Unwanted Spaces
+" -----------------------------------------------------------------------------
+
+highlight MyExtraWhitespace ctermbg=red guibg=red
+
+fu! InitExtraWhitespace()
+    let b:extra_whitespace = 0
+    call ToggleMyExtraWhitespace()
+endfu
+
+fu! ToggleMyExtraWhitespace()
+    if b:extra_whitespace == 1
+        augroup MyExtraWhitespaceGroup
+            autocmd!
+        augroup END
+
+        call clearmatches()
+
+        let b:extra_whitespace = 0
+    else
+        match MyExtraWhitespace "\s\+$\|\t\+"
+
+        augroup MyExtraWhitespaceGroup
+            autocmd!
+            autocmd BufWinEnter * match MyExtraWhitespace "\s\+$\|\t\+"
+            autocmd InsertEnter * match MyExtraWhitespace "\s\+\%#\@<!$\|\t\+"
+            autocmd InsertLeave * match MyExtraWhitespace "\s\+$\|\t\+"
+            autocmd BufWinLeave * call clearmatches()
+        augroup END
+
+        let b:extra_whitespace = 1
+    endif
+endfu
+
+autocmd BufWinEnter,FileType * :call InitExtraWhitespace()
+
+" -----------------------------------------------------------------------------
+" Remove spell check from some files
+" -----------------------------------------------------------------------------
+
+autocmd BufEnter *.sql :set nospell
+autocmd BufEnter *.erl :set nospell
+autocmd BufEnter *.asm :set nospell
+autocmd BufEnter *.s :set nospell
+
+" -----------------------------------------------------------------------------
+" Maps and Keybinds
+" -----------------------------------------------------------------------------
+
+" Stop using the arrows
+map <left> <nop>
+map <down> <nop>
+map <up> <nop>
+map <right> <nop>
+
+" Use Ctrl-{hjkl} to move between windows
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+
+" Handle Tabs
+nnoremap <silent> <C-o> :tabprevious<CR>
+nnoremap <silent> <C-p> :tabnext<CR>
+nnoremap <silent> <C-t> :tabnew<CR>
+
+" Toggle between the two languages that I use, or just toggle the spell
+" functionality
+nnoremap <silent> <leader>a :call ToggleLanguage()<CR>
+nnoremap <silent> <leader>s :call ToggleSpell()<CR>
+
+" Toggle between extra whitespace highlight
+nnoremap <silent> <leader>l :call ToggleMyExtraWhitespace()<CR>
+
+" End with the W and Q not defined annoyance
+com W w
+com Q q
+
+" Write 79 = or -
+map <F2> 79I=<ESC>
+map <leader><F2> 79I-<ESC>
+
+" Put a (DONE) word at beginning of line
+nnoremap <F3> I(DONE) <ESC>
+
+" Press f4 to go to a line and paste something
+map <F4> ggp
+map <leader><F4> ggP
+
+" Press f5 to make a text "something. Else", into "something, else".
+" <leader>f5 for the opposite
+map <F5> gulhhx
+map <leader><F5> gUlhhr.
+
+" Make it easy to use EasyAlign
+vnoremap <silent> <leader><Enter> :EasyAlign<Enter>
+
+" Use ç to work with registers
+noremap ç "
+
+" Stay selected while identing
+vnoremap < <gv
+vnoremap > >gv
+
+" -----------------------------------------------------------------------------
+" Change TAB completion behavior
+" -----------------------------------------------------------------------------
+
+set wildmode=longest,list,full
+set wildmenu
+
+" -----------------------------------------------------------------------------
+" Change how splits open
+" -----------------------------------------------------------------------------
+
+set splitright
+set splitbelow
+
+" -----------------------------------------------------------------------------
+" Color of Tabs
+" -----------------------------------------------------------------------------
+
+:hi TabLineFill guifg=Black guibg=Black ctermfg=Black ctermbg=Black
+
+" -----------------------------------------------------------------------------
+" Status Line, Airline Settings
+" -----------------------------------------------------------------------------
+
+set laststatus=2
+
+let g:airline_powerline_fonts=1
+let g:airline_section_z = airline#section#create(['%L', ' ', '%4l %2v'])
+let g:airline#extensions#tabline#enabled = 1
+
+" -----------------------------------------------------------------------------
+" Rainbow Parentheses Stuff
+" -----------------------------------------------------------------------------
+
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+
+" -----------------------------------------------------------------------------
+" YouCompleteMe Stuff
+" -----------------------------------------------------------------------------
+
+let g:ycm_python_binary_path = 'python3'
+
+nnoremap <silent> yt <C-o>
+nnoremap <silent> yg :YcmCompleter GoToDeclaration<CR>
+nnoremap <silent> yh :YcmCompleter GoToDefinition<CR>
+nnoremap <silent> yj :YcmCompleter GetDoc<CR>
+nnoremap <silent> yu :YcmCompleter GoToReferences<CR>
+
+let g:ycm_auto_trigger = 0
+
+" -----------------------------------------------------------------------------
+" NERDTree
+" -----------------------------------------------------------------------------
+
+" Clode vim if NERDTree is the only open window
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" Symbols
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+
+nnoremap <silent> <leader>n :NERDTreeToggle<CR>
+
+" -----------------------------------------------------------------------------
+" Tagbar Stuff
+" -----------------------------------------------------------------------------
+
+nnoremap <silent> <leader>t :TagbarToggle<CR>
+nnoremap <silent> yt <C-o>
+nnoremap <silent> yg <C-]>
+
+" -----------------------------------------------------------------------------
+" Indent Json
+" -----------------------------------------------------------------------------
+
+fu! Json()
+    :%!python -m json.tool
+endfu
+
+com Json call Json()
