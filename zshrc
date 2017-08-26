@@ -28,5 +28,5 @@ source $ZSH/oh-my-zsh.sh
 export PATH=$PATH:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
 
 # Use vi mode
-bindkey -v
+# bindkey -v
 # export KEYTIMEOUT=1
