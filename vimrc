@@ -32,9 +32,10 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'Lokaltog/powerline-fonts'
 
-" Tab completion
+" Completion
 Plugin 'Valloric/YouCompleteMe'
-" Plugin 'ervandew/supertab'
+Plugin 'kien/ctrlp.vim'
+" Plugin 'ervandew/supertab' (Keeping this for when I can't use YCM)
 
 " More Features
 Plugin 'dockyard/vim-easydir'
@@ -55,10 +56,6 @@ Plugin 'terryma/vim-expand-region'
 filetype plugin indent on
 
 set term=xterm-256color
-set guioptions-=m " Remove menu bar
-set guioptions-=T " Remove toolbar
-set guioptions-=r " Remove right-hand scroll bar
-
 set cursorline
 set timeoutlen=1000 ttimeoutlen=0
 set number
@@ -66,6 +63,7 @@ set shiftwidth=4 softtabstop=4
 syntax on
 set tabstop=4
 set expandtab
+set backspace=indent,eol,start
 
 " Text line breaks
 set formatoptions=l
@@ -79,6 +77,11 @@ colorscheme solarized
 
 " Without this, some write event's aren't processed by the OS
 set backupcopy=yes
+
+" GUI stuff
+set guioptions-=m " Remove menu bar
+set guioptions-=T " Remove toolbar
+set guioptions-=r " Remove right-hand scroll bar
 
 " -----------------------------------------------------------------------------
 " File Extensions
