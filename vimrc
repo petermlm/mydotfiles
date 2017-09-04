@@ -338,6 +338,8 @@ nnoremap <silent> <leader>t :TagbarToggle<CR>
 nnoremap <silent> yt <C-o>
 nnoremap <silent> yg <C-]>
 
+let g:tagbar_sort = 0
+
 " -----------------------------------------------------------------------------
 " Indent Json
 " -----------------------------------------------------------------------------
