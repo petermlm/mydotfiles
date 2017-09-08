@@ -48,6 +48,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-fugitive'
 Plugin 'nathanaelkane/vim-indent-guides.git'
 Plugin 'terryma/vim-expand-region'
+Plugin 'AndrewRadev/switch.vim'
 
 " -----------------------------------------------------------------------------
 " Other options
@@ -339,6 +340,12 @@ nnoremap <silent> yt <C-o>
 nnoremap <silent> yg <C-]>
 
 let g:tagbar_sort = 0
+
+" -----------------------------------------------------------------------------
+" Switch stuff
+" -----------------------------------------------------------------------------
+
+let g:switch_custom_definitions = [['and', 'or']]
 
 " -----------------------------------------------------------------------------
 " Indent Json
