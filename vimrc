@@ -38,17 +38,18 @@ Plugin 'kien/ctrlp.vim'
 " Plugin 'ervandew/supertab' (Keeping this for when I can't use YCM)
 
 " More Features
-Plugin 'dockyard/vim-easydir'
-Plugin 'tpope/vim-obsession'
-Plugin 'paradigm/TextObjectify'
-Plugin 'vim-scripts/tComment'
-Plugin 'Lokaltog/vim-easymotion'
-Plugin 'junegunn/vim-easy-align'
-Plugin 'scrooloose/nerdtree'
-Plugin 'tpope/vim-fugitive'
-Plugin 'nathanaelkane/vim-indent-guides.git'
-Plugin 'terryma/vim-expand-region'
 Plugin 'AndrewRadev/switch.vim'
+Plugin 'dockyard/vim-easydir'
+Plugin 'junegunn/vim-easy-align'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'paradigm/TextObjectify'
+Plugin 'nathanaelkane/vim-indent-guides.git'
+Plugin 'scrooloose/nerdtree'
+Plugin 'terryma/vim-expand-region'
+Plugin 'tpope/vim-obsession'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-surround'
+Plugin 'vim-scripts/tComment'
 
 " -----------------------------------------------------------------------------
 " Other options
