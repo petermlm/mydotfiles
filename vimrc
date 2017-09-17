@@ -289,6 +289,7 @@ set laststatus=2
 let g:airline_powerline_fonts=1
 let g:airline_section_z = airline#section#create(['%L', ' ', '%4l %2v'])
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tagbar#flags = 'f'  " show full tag hierarchy
 
 " -----------------------------------------------------------------------------
 " Rainbow Parentheses Stuff
