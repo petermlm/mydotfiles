@@ -21,5 +21,8 @@ plugins=(git python docker)
 # Add oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
+# Disables auto title of windows
+DISABLE_AUTO_TITLE="true"
+
 # Customize to your needs...
 export PATH=$PATH:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
