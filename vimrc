@@ -33,9 +33,10 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'Lokaltog/powerline-fonts'
 
-" Completion
+" Completion and Linting
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'kien/ctrlp.vim'
+Plugin 'w0rp/ale'
 " Plugin 'ervandew/supertab' (Keeping this for when I can't use YCM)
 
 " More Features
@@ -291,6 +292,7 @@ let g:airline_powerline_fonts=1
 let g:airline_section_z = airline#section#create(['%L', ' ', '%4l %2v'])
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tagbar#flags = 'f'  " show full tag hierarchy
+let g:airline#extensions#ale#enabled = 1
 
 " -----------------------------------------------------------------------------
 " Rainbow Parentheses Stuff
@@ -313,7 +315,8 @@ nnoremap <silent> yh :YcmCompleter GoToDefinition<CR>
 nnoremap <silent> yj :YcmCompleter GetDoc<CR>
 nnoremap <silent> yu :YcmCompleter GoToReferences<CR>
 
-let g:ycm_auto_trigger = 0
+let g:ycm_auto_trigger = 1
+let g:ycm_autoclose_preview_window_after_completion = 1
 
 " -----------------------------------------------------------------------------
 " Ctrl+P
