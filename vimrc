@@ -318,6 +318,17 @@ nnoremap <silent> yu :YcmCompleter GoToReferences<CR>
 let g:ycm_auto_trigger = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
 
+" Toggle ycm auto trigger (Is there a more compact way to do this?)
+fu! ToggleYCM()
+    if g:ycm_auto_trigger == 1
+        let g:ycm_auto_trigger = 0
+    else
+        let g:ycm_auto_trigger = 1
+    endif
+endfu
+
+map <leader>y :call ToggleYCM()<CR>
+
 " -----------------------------------------------------------------------------
 " Ctrl+P
 " -----------------------------------------------------------------------------
