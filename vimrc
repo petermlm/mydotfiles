@@ -20,7 +20,7 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'hdima/python-syntax'
 Plugin 'pangloss/vim-javascript'
 Plugin 'adimit/prolog.vim'
-Plugin 'seeamkhan/robotframework-vim'
+Plugin 'mfukar/robotframework-vim'
 " Plugin 'jcf/vim-latex'
 
 " Tags
@@ -333,7 +333,16 @@ map <leader>y :call ToggleYCM()<CR>
 " ALE
 " -----------------------------------------------------------------------------
 
-let g:ale_python_flake8_executable = 'python3'
+let g:ale_sign_column_always = 1
+
+let g:ale_linters = {
+\   'python': ['flake8'],
+\   'javascript': ['eslint'],
+\}
+
+" let g:ale_python_flake8_executable = 'python3'
+let g:ale_python_flake8_use_global = 1
+let g:ale_python_flake8_options = '--ignore E501'
 
 " -----------------------------------------------------------------------------
 " Ctrl+P
