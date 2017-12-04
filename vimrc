@@ -136,7 +136,7 @@ nnoremap <silent> <leader>z :call StartFolds()<CR>
 
 fu! InitLanguage()
     set spell spelllang=en
-    let b:language = 1
+    let b:language = 0
 endfu
 
 fu! ToggleSpell()
@@ -145,12 +145,15 @@ endfu
 
 " Function to toggle between two used languages
 fu! ToggleLanguage()
-    if b:language == 1
+    if b:language == 0
         set spelllang=pt
-        let b:language = 0
-    else
-        set spelllang=en
         let b:language = 1
+    elseif b:language == 1
+        set spelllang=en
+        let b:language = 2
+    else
+        set spelllang=de
+        let b:language = 0
     endif
 endfu
 
