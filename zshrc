@@ -10,6 +10,7 @@ alias cdc="cd \$(cat ~/.cd_dump)"
 alias vim="vim -p"
 alias sl="ls"
 alias sd="sudo docker"
+alias irssi="TERM=screen-256color irssi"
 
 # For Go
 export GOPATH=$HOME/go
