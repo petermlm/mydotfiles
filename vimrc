@@ -87,6 +87,9 @@ set guioptions-=m " Remove menu bar
 set guioptions-=T " Remove toolbar
 set guioptions-=r " Remove right-hand scroll bar
 
+" Changes J behaviour
+set formatoptions+=j
+
 " -----------------------------------------------------------------------------
 " File Extensions
 " -----------------------------------------------------------------------------
