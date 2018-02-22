@@ -152,10 +152,10 @@ fu! ToggleLanguage()
         set spelllang=pt
         let b:language = 1
     elseif b:language == 1
-        set spelllang=en
+        set spelllang=de
         let b:language = 2
     else
-        set spelllang=de
+        set spelllang=en
         let b:language = 0
     endif
 endfu
@@ -349,6 +349,8 @@ let g:ale_linters = {
 " let g:ale_python_flake8_executable = 'python3'
 let g:ale_python_flake8_use_global = 1
 let g:ale_python_flake8_options = '--ignore E501'
+
+map <leader>l :ALEToggle<CR>
 
 " -----------------------------------------------------------------------------
 " Ctrl+P
