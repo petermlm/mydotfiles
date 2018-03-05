@@ -236,7 +236,7 @@ nnoremap <silent> <leader>a :call ToggleLanguage()<CR>
 nnoremap <silent> <leader>s :call ToggleSpell()<CR>
 
 " Toggle between extra whitespace highlight
-nnoremap <silent> <leader>l :call ToggleMyExtraWhitespace()<CR>
+nnoremap <silent> <leader>w :call ToggleMyExtraWhitespace()<CR>
 
 " End with the W and Q not defined annoyance
 com W w
