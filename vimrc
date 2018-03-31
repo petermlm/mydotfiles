@@ -104,6 +104,9 @@ autocmd BufNewFile,BufRead *.tex :set ft=tex
 " Make .md files load like Markdown files.
 autocmd BufNewFile,BufRead *.md :set ft=markdown
 
+" Make .rl file load as Go
+autocmd BufNewFile,BufRead *.rl :set ft=go
+
 " Make Emakefile files load like Erlang files.
 autocmd BufNewFile,BufRead Emakefile :set ft=erlang
 
