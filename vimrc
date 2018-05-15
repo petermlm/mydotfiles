@@ -21,6 +21,7 @@ Plugin 'hdima/python-syntax'
 Plugin 'pangloss/vim-javascript'
 Plugin 'adimit/prolog.vim'
 Plugin 'mfukar/robotframework-vim'
+Plugin 'leafgarland/typescript-vim'
 " Plugin 'jcf/vim-latex'
 
 " Tags
