@@ -168,6 +168,10 @@ endfu
 " Initialize language variables for every new buffer
 autocmd BufWinEnter,FileType * :call InitLanguage()
 
+" For some reasons, without this, spell checking no longer underlines
+hi clear SpellBad
+hi SpellBad cterm=underline
+
 " -----------------------------------------------------------------------------
 " Highlight Unwanted Spaces
 " -----------------------------------------------------------------------------
