@@ -366,7 +366,7 @@ map <leader>l :ALEToggle<CR>
 " -----------------------------------------------------------------------------
 
 let g:ctrlp_map = '<c-i>'
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|\.git'
 
 " -----------------------------------------------------------------------------
 " NERDTree
