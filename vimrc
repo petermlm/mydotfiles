@@ -277,6 +277,9 @@ noremap ç "
 vnoremap < <gv
 vnoremap > >gv
 
+" Disables the ex mode
+nnoremap Q <nop>
+
 " -----------------------------------------------------------------------------
 " Change TAB completion behavior
 " -----------------------------------------------------------------------------
