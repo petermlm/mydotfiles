@@ -25,8 +25,8 @@ Plugin 'leafgarland/typescript-vim'
 " Plugin 'jcf/vim-latex'
 
 " Tags
-Plugin 'xolox/vim-easytags'
-Plugin 'xolox/vim-misc'
+" Plugin 'xolox/vim-easytags'
+" Plugin 'xolox/vim-misc'
 Plugin 'majutsushi/tagbar'
 Plugin 'jstemmer/gotags'
 
