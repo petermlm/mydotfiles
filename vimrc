@@ -217,6 +217,7 @@ autocmd BufEnter *.sql :set nospell
 autocmd BufEnter *.erl :set nospell
 autocmd BufEnter *.asm :set nospell
 autocmd BufEnter *.s :set nospell
+autocmd BufEnter *.go :set nospell
 
 " -----------------------------------------------------------------------------
 " Maps and Keybinds
