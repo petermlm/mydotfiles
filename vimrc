@@ -54,9 +54,10 @@ Plugin 'tpope/vim-obsession'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'vim-scripts/tComment'
+Plugin 'danro/rename.vim'
 
 " -----------------------------------------------------------------------------
-" Other options
+" General Options
 " -----------------------------------------------------------------------------
 
 filetype plugin indent on
@@ -91,6 +92,17 @@ set guioptions-=r " Remove right-hand scroll bar
 
 " Changes J behaviour
 set formatoptions+=j
+
+" Change TAB completion behavior
+set wildmode=longest,list,full
+set wildmenu
+
+" Change how splits open
+set splitright
+set splitbelow
+
+" Color of Tabs
+:hi TabLineFill guifg=Black guibg=Black ctermfg=Black ctermbg=Black
 
 " -----------------------------------------------------------------------------
 " File Extensions
@@ -172,6 +184,13 @@ autocmd BufWinEnter,FileType * :call InitLanguage()
 hi clear SpellBad
 hi SpellBad cterm=underline
 
+" Remove spell check from some files
+autocmd BufEnter *.sql :set nospell
+autocmd BufEnter *.erl :set nospell
+autocmd BufEnter *.asm :set nospell
+autocmd BufEnter *.s :set nospell
+autocmd BufEnter *.go :set nospell
+
 " -----------------------------------------------------------------------------
 " Highlight Unwanted Spaces
 " -----------------------------------------------------------------------------
@@ -208,16 +227,6 @@ fu! ToggleMyExtraWhitespace()
 endfu
 
 autocmd BufWinEnter,FileType * :call InitExtraWhitespace()
-
-" -----------------------------------------------------------------------------
-" Remove spell check from some files
-" -----------------------------------------------------------------------------
-
-autocmd BufEnter *.sql :set nospell
-autocmd BufEnter *.erl :set nospell
-autocmd BufEnter *.asm :set nospell
-autocmd BufEnter *.s :set nospell
-autocmd BufEnter *.go :set nospell
 
 " -----------------------------------------------------------------------------
 " Maps and Keybinds
@@ -280,26 +289,6 @@ vnoremap > >gv
 
 " Disables the ex mode
 nnoremap Q <nop>
-
-" -----------------------------------------------------------------------------
-" Change TAB completion behavior
-" -----------------------------------------------------------------------------
-
-set wildmode=longest,list,full
-set wildmenu
-
-" -----------------------------------------------------------------------------
-" Change how splits open
-" -----------------------------------------------------------------------------
-
-set splitright
-set splitbelow
-
-" -----------------------------------------------------------------------------
-" Color of Tabs
-" -----------------------------------------------------------------------------
-
-:hi TabLineFill guifg=Black guibg=Black ctermfg=Black ctermbg=Black
 
 " -----------------------------------------------------------------------------
 " Status Line, Airline Settings
