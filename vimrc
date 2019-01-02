@@ -144,12 +144,6 @@ endfu
 
 nnoremap <silent> <leader>z :call StartFolds()<CR>
 
-" Default vim keymaps
-" zo - Open fold
-" zc - Close fold
-" zR - Open all folds
-" zM - Close all folds
-
 " -----------------------------------------------------------------------------
 " Language
 " -----------------------------------------------------------------------------
