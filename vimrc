@@ -82,7 +82,7 @@ syntax enable
 set background=light
 colorscheme solarized
 
-" Without this, some write event's aren't processed by the OS
+" Without this, some write events aren't processed by the OS
 set backupcopy=yes
 
 " GUI stuff
