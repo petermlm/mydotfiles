@@ -157,7 +157,7 @@ fu! ToggleSpell()
     set spell!
 endfu
 
-" Function to toggle between two used languages
+" Function to toggle between the used languages
 fu! ToggleLanguage()
     if b:language == 0
         set spelllang=pt
