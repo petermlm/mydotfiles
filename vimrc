@@ -174,6 +174,10 @@ endfu
 " Initialize language variables for every new buffer
 autocmd BufWinEnter,FileType * :call InitLanguage()
 
+" Toggle between the languages, or just toggle the spell functionality
+nnoremap <silent> <leader>a :call ToggleLanguage()<CR>
+nnoremap <silent> <leader>s :call ToggleSpell()<CR>
+
 " Underline spelling mistakes
 hi clear SpellBad
 hi SpellBad cterm=underline
@@ -242,11 +246,6 @@ map <C-l> <C-w>l
 nnoremap <silent> <C-o> :tabprevious<CR>
 nnoremap <silent> <C-p> :tabnext<CR>
 nnoremap <silent> <C-t> :tabnew<CR>
-
-" Toggle between the two languages that I use, or just toggle the spell
-" functionality
-nnoremap <silent> <leader>a :call ToggleLanguage()<CR>
-nnoremap <silent> <leader>s :call ToggleSpell()<CR>
 
 " Toggle between extra whitespace highlight
 nnoremap <silent> <leader>w :call ToggleMyExtraWhitespace()<CR>
