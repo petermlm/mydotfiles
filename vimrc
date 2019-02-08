@@ -226,6 +226,9 @@ endfu
 
 autocmd BufWinEnter,FileType * :call InitExtraWhitespace()
 
+" Toggle between extra whitespace highlight
+nnoremap <silent> <leader>w :call ToggleMyExtraWhitespace()<CR>
+
 " -----------------------------------------------------------------------------
 " Maps and Keybinds
 " -----------------------------------------------------------------------------
