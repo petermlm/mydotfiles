@@ -66,11 +66,8 @@ set term=xterm-256color
 set cursorline
 set timeoutlen=1000 ttimeoutlen=0
 set number
-set shiftwidth=4 softtabstop=4
-syntax on
-set tabstop=4
-set expandtab
 set backspace=indent,eol,start
+syntax on
 
 " Text line breaks
 set formatoptions=l
@@ -129,6 +126,27 @@ autocmd BufNewFile,BufRead *.ejs :set ft=html
 " Make .docker files load as Dockefile
 autocmd BufNewFile,BufRead Dockerfile.* :set ft=dockerfile
 autocmd BufNewFile,BufRead *.docker :set ft=dockerfile
+
+" -----------------------------------------------------------------------------
+" Indentation
+" -----------------------------------------------------------------------------
+
+" Set indent based on file type
+fu! SetIndent()
+    if &ft == "html" || &ft == "ts" || &ft == "css"
+        set shiftwidth=2
+        set softtabstop=2
+        set tabstop=2
+    else
+        set shiftwidth=4
+        set softtabstop=4
+        set tabstop=4
+    endif
+endfu
+
+autocmd FileType * :call SetIndent()
+
+set expandtab
 
 " -----------------------------------------------------------------------------
 " Folds
@@ -249,9 +267,6 @@ map <C-l> <C-w>l
 nnoremap <silent> <C-o> :tabprevious<CR>
 nnoremap <silent> <C-p> :tabnext<CR>
 nnoremap <silent> <C-t> :tabnew<CR>
-
-" Toggle between extra whitespace highlight
-nnoremap <silent> <leader>w :call ToggleMyExtraWhitespace()<CR>
 
 " End with the W and Q not defined annoyance
 com W w
