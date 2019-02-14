@@ -105,6 +105,9 @@ set splitbelow
 " File Extensions
 " -----------------------------------------------------------------------------
 
+augroup FileExtentionsGroup
+autocmd!
+
 " Make .pl files load like Prolog and not like Perl
 autocmd BufNewFile,BufRead *.pl :set ft=prolog
 
@@ -127,6 +130,8 @@ autocmd BufNewFile,BufRead *.ejs :set ft=html
 autocmd BufNewFile,BufRead Dockerfile.* :set ft=dockerfile
 autocmd BufNewFile,BufRead *.docker :set ft=dockerfile
 
+augroup END
+
 " -----------------------------------------------------------------------------
 " Indentation
 " -----------------------------------------------------------------------------
@@ -144,7 +149,10 @@ fu! SetIndent()
     endif
 endfu
 
-autocmd FileType * :call SetIndent()
+augroup IndentGroup
+autocmd!
+autocmd BufWinEnter,FileType * :call SetIndent()
+augroup END
 
 set expandtab
 
@@ -167,8 +175,19 @@ nnoremap <silent> <leader>z :call StartFolds()<CR>
 " -----------------------------------------------------------------------------
 
 fu! InitLanguage()
-    set spell spelllang=en
     let b:language = 0
+
+    if &ft == "sql" ||
+        \ &ft == "go" ||
+        \ &ft == "typescript" ||
+        \ &ft == "erl" ||
+        \ &ft == "asm" ||
+        \ &ft == "s"
+        set spell!
+    else
+        set spell spelllang=en
+    endif
+
 endfu
 
 fu! ToggleSpell()
@@ -177,6 +196,10 @@ endfu
 
 " Function to toggle between the used languages
 fu! ToggleLanguage()
+    if &spell == 0
+        return
+    endif
+
     if b:language == 0
         set spelllang=pt
         let b:language = 1
@@ -190,7 +213,10 @@ fu! ToggleLanguage()
 endfu
 
 " Initialize language variables for every new buffer
+augroup Language
+autocmd!
 autocmd BufWinEnter,FileType * :call InitLanguage()
+augroup END
 
 " Toggle between the languages, or just toggle the spell functionality
 nnoremap <silent> <leader>a :call ToggleLanguage()<CR>
@@ -199,13 +225,6 @@ nnoremap <silent> <leader>s :call ToggleSpell()<CR>
 " Underline spelling mistakes
 hi clear SpellBad
 hi SpellBad cterm=underline
-
-" Remove spell check from some files
-autocmd BufEnter *.sql :set nospell
-autocmd BufEnter *.erl :set nospell
-autocmd BufEnter *.asm :set nospell
-autocmd BufEnter *.s :set nospell
-autocmd BufEnter *.go :set nospell
 
 " -----------------------------------------------------------------------------
 " Highlight Unwanted Spaces
