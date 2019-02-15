@@ -22,6 +22,7 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'adimit/prolog.vim'
 Plugin 'mfukar/robotframework-vim'
 Plugin 'leafgarland/typescript-vim'
+Plugin 'alvan/vim-closetag'
 " Plugin 'jcf/vim-latex'
 
 " Tags
