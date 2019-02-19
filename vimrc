@@ -231,38 +231,53 @@ hi SpellBad cterm=underline
 " Highlight Unwanted Spaces
 " -----------------------------------------------------------------------------
 
+" Defines the highlight of the extra white space, which will be red
 highlight MyExtraWhitespace ctermbg=red guibg=red
 
-fu! InitExtraWhitespace()
-    let b:extra_whitespace = 0
-    call ToggleMyExtraWhitespace()
-endfu
-
-fu! ToggleMyExtraWhitespace()
-    if b:extra_whitespace == 1
-        augroup MyExtraWhitespaceGroup
-            autocmd!
-        augroup END
-
-        call clearmatches()
-
+fu! WhitespaceWinInit()
+    if !exists("b:extra_whitespace")
         let b:extra_whitespace = 0
+    endif
+
+    if b:extra_whitespace == 0
+        call WhitespaceApplyHighlight()
     else
-        match MyExtraWhitespace "\s\+$\|\t\+"
-
-        augroup MyExtraWhitespaceGroup
-            autocmd!
-            autocmd BufWinEnter * match MyExtraWhitespace "\s\+$\|\t\+"
-            autocmd InsertEnter * match MyExtraWhitespace "\s\+\%#\@<!$\|\t\+"
-            autocmd InsertLeave * match MyExtraWhitespace "\s\+$\|\t\+"
-            autocmd BufWinLeave * call clearmatches()
-        augroup END
-
-        let b:extra_whitespace = 1
+        call WhitespaceRemoveHighlight()
     endif
 endfu
 
-autocmd BufWinEnter,FileType * :call InitExtraWhitespace()
+fu! ToggleMyExtraWhitespace()
+    if b:extra_whitespace == 0
+        call WhitespaceRemoveHighlight()
+        let b:extra_whitespace = 1
+    else
+        call WhitespaceApplyHighlight()
+        let b:extra_whitespace = 0
+    endif
+endfu
+
+fu! WhitespaceApplyHighlight()
+    match MyExtraWhitespace "\s\+$\|\t\+"
+endfu
+
+fu! WhitespaceRemoveHighlight()
+    call clearmatches()
+endfu
+
+fu! WhitespaceEnterInsert()
+    match MyExtraWhitespace "\s\+\%#\@<!$\|\t\+"
+endfu
+
+fu! WhitespaceLeaveInsert()
+    match MyExtraWhitespace "\s\+$\|\t\+"
+endfu
+
+augroup ExtraWhitespaceGroup
+    autocmd!
+    autocmd WinEnter,BufWinEnter * :call WhitespaceWinInit()
+    autocmd InsertEnter * :call WhitespaceEnterInsert()
+    autocmd InsertLeave * :call WhitespaceLeaveInsert()
+augroup END
 
 " Toggle between extra whitespace highlight
 nnoremap <silent> <leader>w :call ToggleMyExtraWhitespace()<CR>
