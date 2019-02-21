@@ -124,8 +124,9 @@ autocmd BufNewFile,BufRead *.rl :set ft=go
 " Make Emakefile files load like Erlang files.
 autocmd BufNewFile,BufRead Emakefile :set ft=erlang
 
-" Make ejs file load as HTML
+" Make ejs, and vue files load as HTML
 autocmd BufNewFile,BufRead *.ejs :set ft=html
+autocmd BufNewFile,BufRead *.vue :set ft=html
 
 " Make .docker files load as Dockefile
 autocmd BufNewFile,BufRead Dockerfile.* :set ft=dockerfile
