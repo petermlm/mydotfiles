@@ -337,6 +337,10 @@ vnoremap > >gv
 " Disables the ex mode
 nnoremap Q <nop>
 
+" Splits
+nnoremap <leader>v :vsplit<CR>
+nnoremap <leader>b :split<CR>
+
 " -----------------------------------------------------------------------------
 " Status Line, Airline Settings
 " -----------------------------------------------------------------------------
