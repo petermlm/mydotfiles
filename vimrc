@@ -140,7 +140,7 @@ augroup END
 
 " Set indent based on file type
 fu! SetIndent()
-    if &ft == "html" || &ft == "typescript" || &ft == "css"
+    if &ft == "html" || &ft == "js" || &ft == "typescript" || &ft == "css"
         set shiftwidth=2
         set softtabstop=2
         set tabstop=2
