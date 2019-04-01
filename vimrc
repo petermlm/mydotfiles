@@ -284,7 +284,7 @@ augroup END
 nnoremap <silent> <leader>w :call ToggleMyExtraWhitespace()<CR>
 
 " -----------------------------------------------------------------------------
-" Maps and Keybinds
+" Key Binds
 " -----------------------------------------------------------------------------
 
 " Stop using the arrows
@@ -330,7 +330,7 @@ vnoremap <silent> <leader><Enter> :EasyAlign<Enter>
 " Use ç to work with registers
 noremap ç "
 
-" Stay selected while identing
+" Stay selected while indenting
 vnoremap < <gv
 vnoremap > >gv
 
