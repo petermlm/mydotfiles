@@ -303,7 +303,7 @@ map <C-l> <C-w>l
 nnoremap <silent> <C-o> :tabprevious<CR>
 nnoremap <silent> <C-p> :tabnext<CR>
 nnoremap <silent> <C-t> :tabnew<CR>
-nnoremap <silent> <C-w> :tabclose<CR>
+nnoremap <leader>w :tabclose<CR>
 
 " End with the W and Q not defined annoyance
 com W w
@@ -402,7 +402,7 @@ let g:ale_linters = {
 
 " let g:ale_python_flake8_executable = 'python3'
 let g:ale_python_flake8_use_global = 1
-let g:ale_python_flake8_options = '--ignore E501'
+let g:ale_python_flake8_options = '--ignore E501,W503,D'
 
 map <leader>l :ALEToggle<CR>
 
