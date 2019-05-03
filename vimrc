@@ -303,7 +303,7 @@ map <C-l> <C-w>l
 nnoremap <silent> <C-o> :tabprevious<CR>
 nnoremap <silent> <C-p> :tabnext<CR>
 nnoremap <silent> <C-t> :tabnew<CR>
-nnoremap <leader>w :tabclose<CR>
+nnoremap <leader>q :tabclose<CR>
 
 " End with the W and Q not defined annoyance
 com W w
