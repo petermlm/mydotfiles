@@ -18,6 +18,7 @@ Plugin 'vim-airline/vim-airline-themes'
 
 " Languages
 Plugin 'hdima/python-syntax'
+Plugin 'Vimjas/vim-python-pep8-indent'
 Plugin 'pangloss/vim-javascript'
 Plugin 'adimit/prolog.vim'
 Plugin 'mfukar/robotframework-vim'
