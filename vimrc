@@ -326,6 +326,11 @@ map <leader><F4> ggP
 map <F5> gulhhx
 map <leader><F5> gUlhhr.
 
+" Put a python print statement around the current line, or remove it. This
+" could be vastly improved.
+map <F6> Iprint(<ESC>A)<ESC>
+map <leader><F6> 0wdwx$x
+
 " Make it easy to use EasyAlign
 vnoremap <silent> <leader><Enter> :EasyAlign<Enter>
 
