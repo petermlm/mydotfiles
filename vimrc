@@ -408,7 +408,7 @@ let g:ale_linters = {
 
 " let g:ale_python_flake8_executable = 'python3'
 let g:ale_python_flake8_use_global = 1
-let g:ale_python_flake8_options = '--ignore E501,W503,D'
+let g:ale_python_flake8_options = '--ignore E501,W503,W605,D'
 
 map <leader>l :ALEToggle<CR>
 
