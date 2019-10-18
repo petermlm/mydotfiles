@@ -103,6 +103,9 @@ set splitbelow
 " Color of Tabs
 :hi TabLineFill guifg=Black guibg=Black ctermfg=Black ctermbg=Black
 
+" No double spaces after full stop
+set nojoinspaces
+
 " -----------------------------------------------------------------------------
 " File Extensions
 " -----------------------------------------------------------------------------
