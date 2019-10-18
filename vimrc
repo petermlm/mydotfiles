@@ -489,6 +489,20 @@ endfu
 com Json call Json()
 
 " -----------------------------------------------------------------------------
+" Get offset in bytes of current cursor position in file
+" -----------------------------------------------------------------------------
+
+fu! Offset()
+    let l:offset = eval(line2byte(line("."))+col("."))
+    if l:offset >= 2
+        let l:offset = l:offset-2
+    endif
+    echo l:offset
+endfu
+
+com Offset call Offset()
+
+" -----------------------------------------------------------------------------
 " Indent Python in the Google way.
 "
 " https://google.github.io/styleguide/pyguide.html
