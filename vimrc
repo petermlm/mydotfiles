@@ -189,7 +189,7 @@ fu! InitLanguage()
         \ &ft == "erl" ||
         \ &ft == "asm" ||
         \ &ft == "s"
-        set spell!
+        set nospell
     else
         set spell spelllang=en
     endif
