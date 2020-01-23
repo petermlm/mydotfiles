@@ -139,19 +139,112 @@ autocmd BufNewFile,BufRead *.docker :set ft=dockerfile
 augroup END
 
 " -----------------------------------------------------------------------------
+" Highlight Unwanted Spaces
+" -----------------------------------------------------------------------------
+
+" Defines the highlight of the extra white space, which will be red
+highlight MyExtraWhitespace ctermbg=red guibg=red
+
+fu! WhitespaceWinInit()
+    if !exists("b:extra_whitespace")
+        let b:extra_whitespace = 0
+    endif
+
+    if !exists("b:highlight_tabs")
+        let b:highlight_tabs = 1
+    endif
+
+    if b:extra_whitespace == 0
+        call WhitespaceApplyHighlight()
+    else
+        call WhitespaceRemoveHighlight()
+    endif
+endfu
+
+fu! ToggleMyExtraWhitespace()
+    if b:extra_whitespace == 0
+        call WhitespaceRemoveHighlight()
+        let b:extra_whitespace = 1
+    else
+        call WhitespaceApplyHighlight()
+        let b:extra_whitespace = 0
+    endif
+endfu
+
+fu! WhitespaceApplyHighlight()
+    if b:highlight_tabs == 0
+        match MyExtraWhitespace "\s\+$"
+    else
+        match MyExtraWhitespace "\s\+$\|\t\+"
+    endif
+endfu
+
+fu! WhitespaceRemoveHighlight()
+    call clearmatches()
+endfu
+
+fu! WhitespaceEnterInsert()
+    if b:highlight_tabs == 0
+        match MyExtraWhitespace "\s\+\%#\@<!$"
+    else
+        match MyExtraWhitespace "\s\+\%#\@<!$\|\t\+"
+    endif
+endfu
+
+fu! WhitespaceLeaveInsert()
+    if b:highlight_tabs == 0
+        match MyExtraWhitespace "\s\+$"
+    else
+        match MyExtraWhitespace "\s\+$\|\t\+"
+    endif
+endfu
+
+augroup ExtraWhitespaceGroup
+    autocmd!
+    autocmd WinEnter,BufWinEnter * :call WhitespaceWinInit()
+    autocmd InsertEnter * :call WhitespaceEnterInsert()
+    autocmd InsertLeave * :call WhitespaceLeaveInsert()
+augroup END
+
+" Toggle between extra whitespace highlight
+nnoremap <silent> <leader>w :call ToggleMyExtraWhitespace()<CR>
+
+" -----------------------------------------------------------------------------
 " Indentation
 " -----------------------------------------------------------------------------
 
+fu! SetIndentTabs()
+    set shiftwidth=4
+    set softtabstop=4
+    set tabstop=4
+    set noexpandtab
+endfu
+
+fu! SetIndentWeb()
+    set shiftwidth=2
+    set softtabstop=2
+    set tabstop=2
+    set expandtab
+endfu
+
+fu! SetIndentDefault()
+    set shiftwidth=4
+    set softtabstop=4
+    set tabstop=4
+    set expandtab
+endfu
+
 " Set indent based on file type
 fu! SetIndent()
-    if &ft == "html" || &ft == "javascript" || &ft == "typescript" || &ft == "css"
-        set shiftwidth=2
-        set softtabstop=2
-        set tabstop=2
+    if &ft == "go" || &ft == "make"
+        call SetIndentTabs()
+        let b:highlight_tabs = 0
+    elseif &ft == "html" || &ft == "javascript" || &ft == "typescript" || &ft == "css"
+        call SetIndentWeb()
+        let b:highlight_tabs = 1
     else
-        set shiftwidth=4
-        set softtabstop=4
-        set tabstop=4
+        call SetIndentDefault()
+        let b:highlight_tabs = 1
     endif
 endfu
 
@@ -159,8 +252,6 @@ augroup IndentGroup
 autocmd!
 autocmd BufWinEnter,FileType * :call SetIndent()
 augroup END
-
-set expandtab
 
 " -----------------------------------------------------------------------------
 " Folds
@@ -231,61 +322,6 @@ nnoremap <silent> <leader>s :call ToggleSpell()<CR>
 " Underline spelling mistakes
 hi clear SpellBad
 hi SpellBad cterm=underline
-
-" -----------------------------------------------------------------------------
-" Highlight Unwanted Spaces
-" -----------------------------------------------------------------------------
-
-" Defines the highlight of the extra white space, which will be red
-highlight MyExtraWhitespace ctermbg=red guibg=red
-
-fu! WhitespaceWinInit()
-    if !exists("b:extra_whitespace")
-        let b:extra_whitespace = 0
-    endif
-
-    if b:extra_whitespace == 0
-        call WhitespaceApplyHighlight()
-    else
-        call WhitespaceRemoveHighlight()
-    endif
-endfu
-
-fu! ToggleMyExtraWhitespace()
-    if b:extra_whitespace == 0
-        call WhitespaceRemoveHighlight()
-        let b:extra_whitespace = 1
-    else
-        call WhitespaceApplyHighlight()
-        let b:extra_whitespace = 0
-    endif
-endfu
-
-fu! WhitespaceApplyHighlight()
-    match MyExtraWhitespace "\s\+$\|\t\+"
-endfu
-
-fu! WhitespaceRemoveHighlight()
-    call clearmatches()
-endfu
-
-fu! WhitespaceEnterInsert()
-    match MyExtraWhitespace "\s\+\%#\@<!$\|\t\+"
-endfu
-
-fu! WhitespaceLeaveInsert()
-    match MyExtraWhitespace "\s\+$\|\t\+"
-endfu
-
-augroup ExtraWhitespaceGroup
-    autocmd!
-    autocmd WinEnter,BufWinEnter * :call WhitespaceWinInit()
-    autocmd InsertEnter * :call WhitespaceEnterInsert()
-    autocmd InsertLeave * :call WhitespaceLeaveInsert()
-augroup END
-
-" Toggle between extra whitespace highlight
-nnoremap <silent> <leader>w :call ToggleMyExtraWhitespace()<CR>
 
 " -----------------------------------------------------------------------------
 " Key Binds
