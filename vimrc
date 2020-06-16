@@ -401,6 +401,13 @@ let g:airline#extensions#tagbar#flags = 'f'  " show full tag hierarchy
 let g:airline#extensions#ale#enabled = 1
 
 " -----------------------------------------------------------------------------
+" Go
+" -----------------------------------------------------------------------------
+
+let g:go_def_mapping_enabled = 0
+let g:go_fmt_command = "goimports"
+
+" -----------------------------------------------------------------------------
 " Rainbow Parentheses Stuff
 " -----------------------------------------------------------------------------
 
