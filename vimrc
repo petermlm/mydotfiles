@@ -25,11 +25,9 @@ Plugin 'mfukar/robotframework-vim'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'alvan/vim-closetag'
 Plugin 'fatih/vim-go'
-" Plugin 'jcf/vim-latex'
+Plugin 'psf/black'
 
 " Tags
-" Plugin 'xolox/vim-easytags'
-" Plugin 'xolox/vim-misc'
 Plugin 'majutsushi/tagbar'
 Plugin 'jstemmer/gotags'
 
@@ -401,6 +399,12 @@ let g:airline#extensions#tagbar#flags = 'f'  " show full tag hierarchy
 let g:airline#extensions#ale#enabled = 1
 
 " -----------------------------------------------------------------------------
+" Python
+" -----------------------------------------------------------------------------
+
+autocmd BufWritePre *.py execute ':Black'
+
+" -----------------------------------------------------------------------------
 " Go
 " -----------------------------------------------------------------------------
 
@@ -420,14 +424,14 @@ au Syntax * RainbowParenthesesLoadBraces
 " YouCompleteMe Stuff
 " -----------------------------------------------------------------------------
 
-let g:ycm_python_binary_path = 'python3'
-
 nnoremap <silent> yt <C-o>
 nnoremap <silent> yg :YcmCompleter GoToDeclaration<CR>
 nnoremap <silent> yh :YcmCompleter GoToDefinition<CR>
 nnoremap <silent> yj :YcmCompleter GetDoc<CR>
 nnoremap <silent> yu :YcmCompleter GoToReferences<CR>
 
+let g:ycm_python_binary_path = 'python3'
+let b:ycm_hover = ''
 let g:ycm_auto_trigger = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
 
